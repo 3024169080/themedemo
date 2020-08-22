@@ -1,6 +1,12 @@
 <template>
-  <div class="model-box">
-    <div class="namebox">{{name}}</div>
+  <div class="model-box flex">
+    <div class="namebox flex">
+      <i class="iconfont iconmokuai"></i>
+      <p>{{name}}</p>
+    </div>
+    <div class="icons flex">
+      <i class="iconfont iconpaixu"></i>
+    </div>
   </div>
 </template>
 <script>
@@ -14,11 +20,23 @@ export default {
 </script>
 <style lang="scss" scoped>
 .model-box {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #ededed;
   .namebox {
-    text-align: center;
-    font-size: 14px;
+    padding: 18px 15px;
+    padding-right: 44px;
+    p {
+      font-size: 14px;
+      flex: 1;
+      margin-left: 10px;
+    }
+  }
+  .icons {
+    width: 44px;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
