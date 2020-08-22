@@ -46,6 +46,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 480px;
+  overflow: hidden;
   .bg {
     position: absolute;
     top: 0;

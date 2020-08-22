@@ -2,14 +2,44 @@
   <!-- 视图层 -->
   <div class="contentPage flex" v-if="show">
     <div class="preview" :class="{'wrapperMobile':showMoblie}">
-      <imageText :render="false" :deviceType="showMoblie?'moblie':'pc'"></imageText>
+      <draggable
+        :value="getModelList"
+        :group="{name: 'article', put: true}"
+        filter=".disable"
+        animation="300"
+        scrollSensitivity="40"
+      >
+        <div
+          :ref="'list-complete-item'+index"
+          v-for="(element, index) in getModelList"
+          v-show="((element.componentType==3 || element.componentType==1) && element.componentInfo?element.componentInfo.visible==1:true)"
+          :key="getKey(element)"
+          class="list-complete-item"
+          @click.stop="itemClick(element,index)"
+          @mouseenter="mousemovesss(index)"
+          :class="checkDisable(element)"
+        >
+          <component
+            :is="element.componentCode"
+            :datas="element"
+            :render="false"
+            :deviceType="showMoblie?'moblie':'pc'"
+            class="component-el"
+            :ref="element.componentCode+index"
+          ></component>
+        </div>
+      </draggable>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import imageText from "@/components/theme/imageText";
+// import imageText from "@/components/theme/imageText";
+// import imageRow from "@/components/theme/imageRow";
+// import pureText from "@/components/theme/pureText";
+import { uniqueId } from "@/assets/js/componentBase.js";
 import { mapState } from "vuex";
+import draggable from "vuedraggable";
 export default {
   name: "contentPage",
   props: {
@@ -22,14 +52,27 @@ export default {
     return {};
   },
   components: {
-    imageText,
+    draggable,
+    // imageText,
+    // imageRow,
+    // pureText,
   },
   computed: {
     ...mapState(["showMoblie", "screenWidth"]),
+    getModelList() {
+      return this.$store.state.modelClass.currentPageInfo.components;
+    },
   },
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    getKey(value) {
+      return value.id || uniqueId(this.getModelList);
+    },
+    itemClick() {},
+    mousemovesss() {},
+    checkDisable() {},
+  },
 };
 </script>
 
@@ -38,13 +81,13 @@ export default {
   flex: 1;
   margin: 10px;
   justify-content: center;
-  height: calc(100vh - 50px - 20px);
-  overflow-y: auto;
 }
 .preview {
   background: #fff;
   width: 100%;
   transition: all 0.4s;
+  height: calc(100vh - 50px - 20px);
+  overflow-y: auto;
 }
 .wrapperMobile {
   width: 375px;

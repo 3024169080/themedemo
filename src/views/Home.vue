@@ -37,6 +37,7 @@ export default {
     window.addEventListener("resize", function () {
       that.$store.commit("screenWidth", document.body.offsetWidth);
     });
+    this.$store.dispatch("getPageData");
   },
   methods: {},
 };

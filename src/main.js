@@ -7,6 +7,9 @@ import "./static/css/color.css";
 
 import "./plugins/element.js";
 
+import componentsList from "@/assets/js/components";
+Vue.use(componentsList);
+
 Vue.config.productionTip = false;
 
 new Vue({
