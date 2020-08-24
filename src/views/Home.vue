@@ -15,7 +15,7 @@ export default {
   name: "home",
   data() {
     return {
-      showContentPage: true,
+      showContentPage: false,
     };
   },
   components: {
@@ -34,12 +34,18 @@ export default {
   created() {},
   mounted() {
     let that = this;
+    that.initView();
     window.addEventListener("resize", function () {
-      that.$store.commit("screenWidth", document.body.offsetWidth);
+      that.initView();
     });
     this.$store.dispatch("getPageData");
   },
-  methods: {},
+  methods: {
+    initView() {
+      this.$store.commit("screenWidth", document.body.offsetWidth);
+      this.showContentPage = document.body.offsetWidth <= 600 ? false : true;
+    },
+  },
 };
 </script>
 
