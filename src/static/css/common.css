@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "//at.alicdn.com/t/font_2021742_6yrj70kq905.css";
+@import "//at.alicdn.com/t/font_2021742_r035k1dxzp.css";
 html,
 body,
 div,
@@ -222,7 +222,7 @@ textarea {
 }
 
 .fontW {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .line {
@@ -236,4 +236,30 @@ textarea {
 
 .font15 {
   font-size: 15px;
+}
+/* 一行否则出现省略号 */
+
+.line-clamp1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 22px;
+}
+
+.line-clamp3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

@@ -1,8 +1,12 @@
 <template>
-  <div class="model-box flex">
+  <div class="model-box flex" :title="name">
     <div class="namebox flex">
       <i class="iconfont iconmokuai"></i>
-      <p>{{name}}</p>
+      <p class="line-clamp1">{{name}}</p>
+    </div>
+    <div class="showIcon">
+      <i class="iconfont iconyanjing2" v-if="visible==1"></i>
+      <i class="iconfont iconbiyan" v-else></i>
     </div>
     <div class="icons flex">
       <i class="iconfont iconpaixu"></i>
@@ -11,7 +15,7 @@
 </template>
 <script>
 export default {
-  props: ["name", "componentCode"],
+  props: ["name", "componentCode","visible"],
   data() {
     return {};
   },
@@ -27,11 +31,14 @@ export default {
   .namebox {
     padding: 18px 15px;
     padding-right: 44px;
+    flex: 1;
     p {
       font-size: 14px;
-      flex: 1;
       margin-left: 10px;
     }
+  }
+  .showIcon{
+    color: var(--minor-color);
   }
   .icons {
     width: 44px;

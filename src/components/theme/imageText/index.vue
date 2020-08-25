@@ -1,6 +1,6 @@
 <template>
   <!-- 图文组件 -->
-  <div class="imageText flex" :class="{'imageTextMoblie':deviceType=='moblie'}">
+  <div class="imageText flex" :class="{'imageTextMoblie':deviceType==1}">
     <div class="bg">
       <img
         src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598092514179&di=0e18ba763cacbc72ec4f92fb14a8db34&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-26%2F59f182e5c1157.jpg"
@@ -23,8 +23,8 @@ export default {
       default: false,
     },
     deviceType: {
-      type: String,
-      default: "pc",
+      type: Number,
+      default: 2,
     },
   },
   data() {

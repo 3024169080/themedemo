@@ -1,7 +1,7 @@
 <template>
   <!-- 图片列 -->
-  <div class="imageRow" :class="{'imageRowMoblie':deviceType=='moblie'}">
-    <div class="list" v-for="(item,index) in 6" :key="index">
+  <div class="imageRow" :class="{'imageRowMoblie':deviceType==1}">
+    <div class="list" v-for="(item,index) in list" :key="index" :class="'list'+list.length">
       <div class="img">
         <img
           src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598092514179&di=0e18ba763cacbc72ec4f92fb14a8db34&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-26%2F59f182e5c1157.jpg"
@@ -26,12 +26,33 @@ export default {
       default: false,
     },
     deviceType: {
-      type: String,
-      default: "pc",
+      type: Number,
+      default: 2,
     },
   },
   data() {
-    return {};
+    return {
+      list:[
+        {
+          name:"",
+        },
+        {
+          name:"",
+        },
+        {
+          name:"",
+        },
+        {
+          name:"",
+        },
+        {
+          name:"",
+        },
+        {
+          name:"",
+        },
+      ]
+    };
   },
   components: {},
   computed: {},
@@ -43,19 +64,28 @@ export default {
 
 <style lang="scss" scoped>
 .imageRow {
-  padding: 50px 20px;
+  padding: 50px;
   font-size: 12px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
   .list {
     padding: 0 10px;
     width: 30%;
     margin-top: 20px;
     .img {
       width: 100%;
-      height: 300px;
+      padding-bottom: 100%;
+      height: 0;
+      position: relative;
       img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -74,6 +104,9 @@ export default {
         color: #333232;
       }
     }
+  }
+  .list2{
+    width: 46%;
   }
 }
 .imageRowMoblie {

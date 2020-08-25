@@ -1,6 +1,6 @@
 const mutations = {
-  showMoblie(state, val) {
-    state.showMoblie = val;
+  changeDeviceType(state, val) {
+    state.globalDeviceType = val;
   },
   screenWidth(state, val) {
     state.screenWidth = val;

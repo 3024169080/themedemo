@@ -1,6 +1,6 @@
 <template>
   <!-- 配置层 -->
-  <div class="setUp" :class="{'onlySetUp':onlySetUp}">
+  <div class="setUp" :class="{'onlySetUp':onlySetUp,'hideSetUp':hideSetUp}">
     <div class="table flex">
       <div class="tableList" v-for="(item,index) in tableList" :key="index">
         <p>{{item.name}}</p>
@@ -19,7 +19,7 @@
           :key="index"
           class="list-complete-item"
         >
-          <modelBox :name="item.componentName" :componentCode="item.componentCode"></modelBox>
+          <modelBox :name="item.componentName" :componentCode="item.componentCode" :visible="item.componentInfo.visible"></modelBox>
         </div>
         <div style="clear: both"></div>
       </draggable>
@@ -34,6 +34,10 @@ export default {
   name: "setUp",
   props: {
     onlySetUp: {
+      type: Boolean,
+      default: false,
+    },
+    hideSetUp: {
       type: Boolean,
       default: false,
     },
@@ -109,9 +113,16 @@ export default {
   }
   .cpList {
     margin: 10px 0;
+    .list-complete-item{
+      cursor: pointer;
+    }
   }
 }
 .onlySetUp {
   width: 100%;
+}
+.hideSetUp {
+  transform: translateX(-100%);
+  width: 0;
 }
 </style>

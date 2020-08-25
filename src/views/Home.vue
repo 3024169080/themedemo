@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <div class="content flex">
-      <setUp :onlySetUp="!showContentPage"></setUp>
-      <contentPage :show="showContentPage"></contentPage>
+      <setUp :onlySetUp="!showContentPage" :hideSetUp="globalDeviceType==3?true:false"></setUp>
+      <contentPage :show="showContentPage||globalDeviceType==3"></contentPage>
     </div>
   </div>
 </template>
@@ -23,12 +23,11 @@ export default {
     contentPage,
   },
   computed: {
-    ...mapState(["screenWidth"]),
+    ...mapState(["screenWidth", "globalDeviceType"]),
   },
   watch: {
     screenWidth(val) {
       this.showContentPage = val <= 600 ? false : true;
-      this.$store.commit("showMoblie", val <= 750 ? true : false);
     },
   },
   created() {},

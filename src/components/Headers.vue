@@ -6,11 +6,14 @@
       <p>THEME</p>
     </div>
     <div class="changeSize flex">
-      <div class="icons flex">
-        <i class="iconfont iconshouji"></i>
-      </div>
-      <div class="icons flex">
-        <i class="iconfont iconshouji"></i>
+      <div
+        class="icons flex"
+        v-for="(item,index) in deviceList"
+        :key="index"
+        @click="changeDevice(item)"
+        :class="{'selectIcons':globalDeviceType==item.type}"
+      >
+        <i :class="'iconfont '+item.icon"></i>
       </div>
     </div>
     <el-button class="save" size="small">保存</el-button>
@@ -18,16 +21,43 @@
 </template>
 
 <script type="text/ecmascript-6">
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Headers",
   data() {
-    return {};
+    return {
+      deviceList: [
+        {
+          name: "手机端",
+          icon: "iconshouji",
+          type: 1,
+        },
+        {
+          name: "PC端",
+          icon: "icondiannao",
+          type: 2,
+        },
+        {
+          name: "PC端拉伸",
+          icon: "iconlashentianchong",
+          type: 3,
+        },
+      ],
+    };
   },
   components: {},
-  computed: {},
+  computed: {
+    ...mapState(['globalDeviceType']),
+  },
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    ...mapMutations(["changeDeviceType"]),
+    // 修改设备
+    changeDevice(item) {
+      this.changeDeviceType(item.type);
+    },
+  },
 };
 </script>
 
@@ -40,8 +70,8 @@ export default {
   padding-right: 10px;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05),
     0 1px 3px 0 rgba(63, 63, 68, 0.15);
-    position: relative;
-    z-index: 999;
+  position: relative;
+  z-index: 999;
   .left {
     background: var(--main-color);
     color: #fff;
@@ -64,16 +94,17 @@ export default {
       border-bottom: 2px solid transparent;
       justify-content: center;
       align-items: center;
-      margin-left: 10px;
+      margin-left: 22px;
+      cursor: pointer;
       i {
-        font-size: 24px;
+        font-size: 22px;
         color: var(--minor-color);
       }
     }
     .icons:hover {
       border-color: var(--minor-color);
     }
-    .icons:last-child {
+    .selectIcons {
       border-color: var(--main-color);
     }
   }

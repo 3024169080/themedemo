@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 const state = {
   screenWidth: 0, //设备宽度
-  showMoblie: false, //手机模式
+  globalDeviceType: 2, //设备模式  1手机2PC
   commonComponentModel //普通类组件
 };
 export default new Vuex.Store({

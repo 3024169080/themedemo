@@ -14,8 +14,8 @@ export default {
       default: false,
     },
     deviceType: {
-      type: String,
-      default: "pc",
+      type: Number,
+      default: 2,
     },
   },
   data() {
