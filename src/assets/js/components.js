@@ -1,7 +1,8 @@
 import imageRow from "@/components/theme/imageRow/index.js";
 import imageText from "@/components/theme/imageText/index.js";
 import pureText from "@/components/theme/pureText/index.js";
-const components = [imageRow, imageText, pureText];
+import goodsList from "@/components/theme/goodsList/index.js";
+const components = [imageRow, imageText, pureText, goodsList];
 
 // 注册组件
 const install = (Vue, opt) => {

@@ -40,5 +40,19 @@ export default {
       },
       componentData: {}
     }
+  ],
+  goodsClassList: [
+    {
+      id: "",
+      componentName: "商品列表",
+      componentCode: "goodsList",
+      componentType: 1,
+      queueNumber: 0,
+      componentInfo: {
+        visible: 1, //1显示
+        drawable: 0 //0 不可自由拖拽  1可移动
+      },
+      componentData: {}
+    },
   ]
 };

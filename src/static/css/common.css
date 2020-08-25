@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "//at.alicdn.com/t/font_2021742_r035k1dxzp.css";
+@import "//at.alicdn.com/t/font_2021742_zarf8kut8c.css";
 html,
 body,
 div,
@@ -94,6 +94,9 @@ body {
   font-size: 12px;
   background-size: 100%;
   box-sizing: border-box;
+}
+.bg{
+  background-color: #fafafa;
 }
 
 html,

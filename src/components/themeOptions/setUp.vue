@@ -18,17 +18,37 @@
           v-for="(item, index) in getModelList"
           :key="index"
           class="list-complete-item"
+          @click="showComponentsOptions(index)"
         >
-          <modelBox :name="item.componentName" :componentCode="item.componentCode" :visible="item.componentInfo.visible"></modelBox>
+          <modelBox
+            :name="item.componentName"
+            :componentCode="item.componentCode"
+            :visible="item.componentInfo.visible"
+            @changeVisible="changeVisible(index)"
+          ></modelBox>
         </div>
         <div style="clear: both"></div>
       </draggable>
+      <!-- 添加组件 -->
+      <div class="addComponents flex" @click="showComponentsList">
+        <div class="namebox flex">
+          <i class="iconfont iconjiahao"></i>
+          <p class="line-clamp1">添加部分</p>
+        </div>
+      </div>
     </div>
+    <!-- 添加部分组件 -->
+    <addComponents v-model="showAddComponents"></addComponents>
+    <!-- 修改组件内容 -->
+    <changeComponentsOptions v-model="showComOptions"></changeComponentsOptions>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import bus from "@/assets/js/eventBus";
 import modelBox from "@/components/tools/modelBox";
+import addComponents from "@/components/tools/addComponents";
+import changeComponentsOptions from "@/components/tools/changeComponentsOptions";
 import draggable from "vuedraggable";
 export default {
   name: "setUp",
@@ -54,11 +74,15 @@ export default {
           index: 2,
         },
       ],
+      showAddComponents: false,
+      showComOptions: false,
     };
   },
   components: {
     modelBox,
     draggable,
+    addComponents,
+    changeComponentsOptions,
   },
   computed: {
     getModelList() {
@@ -66,7 +90,14 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.showComponentsList();
+    bus.$on("showComOptions", (val, index) => {
+      console.log(val, "---------------------91");
+      this.showComOptions = val;
+      this.operateChange(index);
+    });
+  },
   methods: {
     onstart() {},
     getinitModelList(names) {
@@ -77,8 +108,27 @@ export default {
       let oldIndex = evt.oldIndex;
       let collection = this.getModelList[oldIndex];
       this.$store.commit("modelClass/removeModelListChild", oldIndex);
-      // this.$store.commit('modelClass/addModelListChild',newIndex,collection);
       this.getModelList.splice(newIndex, 0, collection);
+    },
+    // 修改组件显示状态
+    changeVisible(index) {
+      console.log(index, "-----------------------85");
+      this.$store.commit("modelClass/set_modelListInitFlag", false);
+      this.getModelList[index].componentInfo.visible =
+        this.getModelList[index].componentInfo && this.getModelList[index].componentInfo.visible == 1
+          ? 0
+          : 1;
+    },
+    // 展示
+    showComponentsList() {
+      this.showAddComponents = true;
+    },
+    // 点击展示配置
+    showComponentsOptions(index) {
+      bus.$emit("showComOptions", true, index);
+    },
+    operateChange(index) {
+      bus.$emit("operateChange", index); //展示配置
     },
   },
 };
@@ -96,6 +146,8 @@ export default {
   .table {
     border-bottom: 1px solid #ededed;
     background: #fff;
+    position: sticky;
+    top: 0;
     .tableList {
       width: 50%;
       height: 40px;
@@ -113,8 +165,38 @@ export default {
   }
   .cpList {
     margin: 10px 0;
-    .list-complete-item{
+    max-height: 100vh;
+    overflow-y: auto;
+    .list-complete-item {
       cursor: pointer;
+    }
+    .addComponents {
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border-top: 1px solid #ededed;
+      border-right: 3px solid transparent;
+      cursor: pointer;
+      &:hover {
+        transition: all 0.3s;
+        border-right-color: var(--main-color);
+      }
+      .namebox {
+        padding: 18px 15px;
+        padding-right: 44px;
+        flex: 1;
+        color: var(--main-color);
+        align-items: center;
+        i {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        p {
+          font-size: 14px;
+          margin-left: 10px;
+          color: var(--main-color);
+        }
+      }
     }
   }
 }

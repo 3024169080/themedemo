@@ -1,7 +1,7 @@
 <template>
   <!-- 视图层 -->
   <div class="contentPage flex" v-if="show">
-    <div class="preview" :class="{'wrapperMobile':globalDeviceType==1}">
+    <div class="preview" :class="{'wrapperMobile':globalDeviceType==1}" ref="preview">
       <!-- <draggable
         :value="getModelList"
         :group="{name: 'article', put: true}"
@@ -13,7 +13,7 @@
         :ref="'list-complete-item'+index"
         v-for="(element, index) in getModelList"
         v-show="((element.componentType==3 || element.componentType==1) && element.componentInfo?element.componentInfo.visible==1:true)"
-        :key="getKey(element)"
+        :key="index"
         class="list-complete-item"
         @click.stop="itemClick(element,index)"
         @mouseenter="mousemovesss(index)"
@@ -36,6 +36,7 @@
 <script type="text/ecmascript-6">
 import { uniqueId } from "@/assets/js/componentBase.js";
 import { mapState } from "vuex";
+import bus from "@/assets/js/eventBus";
 import draggable from "vuedraggable";
 export default {
   name: "contentPage",
@@ -61,7 +62,11 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    bus.$on("contentPageScroll", (val) => {
+      this.getContentPageScroll(val);
+    });
+  },
   methods: {
     getKey(value) {
       return value.id || uniqueId(this.getModelList);
@@ -69,6 +74,17 @@ export default {
     itemClick() {},
     mousemovesss() {},
     checkDisable() {},
+    // 获取滚动距离
+    getContentPageScroll(val) {
+      if (this.$refs.preview) {
+        console.log(val, "--------------------------------77");
+        if (val == "add") {
+          // 新增滚到底部
+          console.log(this.$refs.preview.scrollHeight,'------------------83');
+          this.$refs.preview.scrollTop = this.$refs.preview.scrollHeight;
+        }
+      }
+    },
   },
 };
 </script>
