@@ -33,6 +33,8 @@ const mutations = {
   // 设置currentPageInfo页面数据z
   setCurrentPageInfo(state,{components,pageSettingData}){
     state.currentPageInfo.components=components || [];
+    pageSettingData = pageSettingData || JSON.parse(JSON.stringify(pageInfo.pageSettingData));
+    state.currentPageInfo.pageSettingData = pageSettingData instanceof Object ? pageSettingData : JSON.parse(pageSettingData);
   },
 
   //当前页面元数据

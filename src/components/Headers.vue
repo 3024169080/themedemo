@@ -16,7 +16,7 @@
         <i :class="'iconfont '+item.icon"></i>
       </div>
     </div>
-    <el-button class="save" size="small">保存</el-button>
+    <el-button class="save" size="small" @click="saveAll">保存</el-button>
   </div>
 </template>
 
@@ -47,7 +47,10 @@ export default {
   },
   components: {},
   computed: {
-    ...mapState(['globalDeviceType']),
+    ...mapState(["globalDeviceType"]),
+    getComponentList() {
+      return this.$store.state.modelClass.currentPageInfo.components;
+    },
   },
   created() {},
   mounted() {},
@@ -56,6 +59,15 @@ export default {
     // 修改设备
     changeDevice(item) {
       this.changeDeviceType(item.type);
+    },
+    // 保存
+    saveAll() {
+      console.log("----------保存");
+      //排序
+      for (let i = 0; i < this.getComponentList.length; i++) {
+        this.getComponentList[i]["queueNumber"] = i;
+      }
+      console.log(this.getComponentList, "------------------------66");
     },
   },
 };

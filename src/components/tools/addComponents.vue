@@ -125,6 +125,7 @@ export default {
       this.$store.dispatch("modelClass/addModellistPushChild", item);
       bus.$emit(
         "showComOptions",
+        1,
         true,
         this.$store.state.modelClass.currentPageInfo.components.length - 1
       );

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "//at.alicdn.com/t/font_2021742_zarf8kut8c.css";
+@import "//at.alicdn.com/t/font_2021742_iqxxzc73sk.css";
 html,
 body,
 div,
@@ -95,7 +95,7 @@ body {
   background-size: 100%;
   box-sizing: border-box;
 }
-.bg{
+.bg {
   background-color: #fafafa;
 }
 
@@ -265,4 +265,15 @@ textarea {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+.te-panel__separator {
+  margin: 1.6rem 0;
+  background-color: #dfe3e8;
+}
+hr {
+  color: #e6e6e6;
+  background-color: #e6e6e6;
+  height: 1px;
+  padding: 0;
+  border: 0;
 }

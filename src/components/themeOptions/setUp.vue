@@ -2,12 +2,18 @@
   <!-- 配置层 -->
   <div class="setUp" :class="{'onlySetUp':onlySetUp,'hideSetUp':hideSetUp}">
     <div class="table flex">
-      <div class="tableList" v-for="(item,index) in tableList" :key="index">
+      <div
+        class="tableList"
+        v-for="(item,index) in tableList"
+        :key="index"
+        :class="{'isTable':index==tab}"
+        @click="changeTab(index)"
+      >
         <p>{{item.name}}</p>
       </div>
     </div>
     <!-- 已有组件列表 -->
-    <div class="cpList">
+    <div class="cpList" v-if="tab==0">
       <draggable
         :value="getModelList"
         :group="{ pull:false,put:false}"
@@ -37,6 +43,8 @@
         </div>
       </div>
     </div>
+    <!-- 模板设置 -->
+    <globalOptions v-else-if="tab==1"></globalOptions>
     <!-- 添加部分组件 -->
     <addComponents v-model="showAddComponents"></addComponents>
     <!-- 修改组件内容 -->
@@ -49,6 +57,7 @@ import bus from "@/assets/js/eventBus";
 import modelBox from "@/components/tools/modelBox";
 import addComponents from "@/components/tools/addComponents";
 import changeComponentsOptions from "@/components/tools/changeComponentsOptions";
+import globalOptions from "@/components/tools/globalOptions";
 import draggable from "vuedraggable";
 export default {
   name: "setUp",
@@ -74,6 +83,7 @@ export default {
           index: 2,
         },
       ],
+      tab: 0,
       showAddComponents: false,
       showComOptions: false,
     };
@@ -83,6 +93,7 @@ export default {
     draggable,
     addComponents,
     changeComponentsOptions,
+    globalOptions,
   },
   computed: {
     getModelList() {
@@ -91,11 +102,10 @@ export default {
   },
   created() {},
   mounted() {
-    this.showComponentsList();
-    bus.$on("showComOptions", (val, index) => {
+    bus.$on("showComOptions", (type, val, index) => {
       console.log(val, "---------------------91");
       this.showComOptions = val;
-      this.operateChange(index);
+      this.operateChange(type, index);
     });
   },
   methods: {
@@ -115,7 +125,8 @@ export default {
       console.log(index, "-----------------------85");
       this.$store.commit("modelClass/set_modelListInitFlag", false);
       this.getModelList[index].componentInfo.visible =
-        this.getModelList[index].componentInfo && this.getModelList[index].componentInfo.visible == 1
+        this.getModelList[index].componentInfo &&
+        this.getModelList[index].componentInfo.visible == 1
           ? 0
           : 1;
     },
@@ -125,10 +136,16 @@ export default {
     },
     // 点击展示配置
     showComponentsOptions(index) {
-      bus.$emit("showComOptions", true, index);
+      bus.$emit("showComOptions", 1, true, index);
     },
-    operateChange(index) {
-      bus.$emit("operateChange", index); //展示配置
+    operateChange(type, index) {
+      bus.$emit("operateChange", type, index); //展示配置
+    },
+    // 修改tab
+    changeTab(index) {
+      if (index != this.tab) {
+        this.tab = index;
+      }
     },
   },
 };
@@ -148,6 +165,7 @@ export default {
     background: #fff;
     position: sticky;
     top: 0;
+    cursor: pointer;
     .tableList {
       width: 50%;
       height: 40px;
@@ -158,8 +176,11 @@ export default {
         font-size: 14px;
         color: var(--minor-color);
       }
+      &:hover {
+        border-color: var(--minor-color);
+      }
     }
-    .tableList:first-child {
+    .isTable {
       border-color: var(--main-color);
     }
   }
