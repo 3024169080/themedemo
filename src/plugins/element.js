@@ -28,6 +28,8 @@ import {
   OptionGroup,
   Progress,
   Row,
+  ColorPicker,
+  Slider
 } from "element-ui";
 
 Vue.use(Radio)
@@ -54,7 +56,9 @@ Vue.use(Radio)
   .use(Option)
   .use(OptionGroup)
   .use(Progress)
-  .use(Row);
+  .use(Row)
+  .use(Slider)
+  .use(ColorPicker);
 
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$confirm = MessageBox.confirm;

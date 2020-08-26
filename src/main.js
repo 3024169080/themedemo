@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import "./static/css/common.css";
 import "./static/css/color.css";
+import "./static/css/global.css";
 
 import "./plugins/element.js";
 

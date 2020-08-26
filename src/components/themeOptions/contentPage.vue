@@ -1,7 +1,12 @@
 <template>
   <!-- 视图层 -->
   <div class="contentPage flex" v-if="show">
-    <div class="preview" :class="{'wrapperMobile':globalDeviceType==1}" ref="preview">
+    <div
+      class="preview"
+      :class="{'wrapperMobile':globalDeviceType==1}"
+      ref="preview"
+      :style="[{'background':backgroundColor}]"
+    >
       <!-- <draggable
         :value="getModelList"
         :group="{name: 'article', put: true}"
@@ -38,6 +43,7 @@ import { uniqueId } from "@/assets/js/componentBase.js";
 import { mapState } from "vuex";
 import bus from "@/assets/js/eventBus";
 import draggable from "vuedraggable";
+import $ from "jquery";
 export default {
   name: "contentPage",
   props: {
@@ -60,11 +66,15 @@ export default {
     getModelList() {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
+    backgroundColor() {
+      return this.$store.state.modelClass.currentPageInfo.pageSettingData
+        .globalColor.componentData.page_op.pageColor;
+    },
   },
   created() {},
   mounted() {
-    bus.$on("contentPageScroll", (val) => {
-      this.getContentPageScroll(val);
+    bus.$on("contentPageScroll", (val, index = 0) => {
+      this.getContentPageScroll(val, index);
     });
   },
   methods: {
@@ -75,13 +85,20 @@ export default {
     mousemovesss() {},
     checkDisable() {},
     // 获取滚动距离
-    getContentPageScroll(val) {
+    getContentPageScroll(val, index) {
       if (this.$refs.preview) {
-        console.log(val, "--------------------------------77");
         if (val == "add") {
           // 新增滚到底部
-          console.log(this.$refs.preview.scrollHeight,'------------------83');
-          this.$refs.preview.scrollTop = this.$refs.preview.scrollHeight;
+          $(".preview").animate(
+            { scrollTop: this.$refs.preview.scrollHeight },
+            500
+          );
+        } else if (val == "edit") {
+          // 编辑到指定位置
+          let { offsetTop } = this.$refs[
+            this.getModelList[index].componentCode + index
+          ][0].$el;
+          $(".preview").animate({ scrollTop: offsetTop-60 }, 500);
         }
       }
     },
@@ -96,7 +113,6 @@ export default {
   justify-content: center;
 }
 .preview {
-  background: #fff;
   width: 100%;
   transition: all 0.2s;
   height: calc(100vh - 50px - 20px);

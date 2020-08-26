@@ -1,6 +1,31 @@
 <template>
   <!-- 板式 -->
-  <div class="globalPlate_op">globalPlate_op</div>
+  <div class="globalPlate_op">
+    <div class="options_block bs">
+      <p class="title">标题</p>
+      <div class="cont">
+        <div class="itemNoFlex">
+          <p class="sTitle">尺寸</p>
+          <div class="slider flex">
+            <el-slider v-model="titleSize" :min="14" :max="40"></el-slider>
+            <p class="sliderRight">{{titleSize+'px'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="options_block bs">
+      <p class="title">正文</p>
+      <div class="cont">
+        <div class="itemNoFlex">
+          <p class="sTitle">尺寸</p>
+          <div class="slider flex">
+            <el-slider v-model="textSize" :min="12" :max="20"></el-slider>
+            <p class="sliderRight">{{textSize+'px'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -10,7 +35,29 @@ export default {
     return {};
   },
   components: {},
-  computed: {},
+  computed: {
+    pageSettingData() {
+      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    },
+    // 标题文字尺寸
+    titleSize: {
+      get() {
+        return this.pageSettingData.globalPlate.componentData.title_op.fontSize;
+      },
+      set(val) {
+        this.pageSettingData.globalPlate.componentData.title_op.fontSize = val;
+      },
+    },
+    // 正文文字尺寸
+    textSize: {
+      get() {
+        return this.pageSettingData.globalPlate.componentData.text_op.fontSize;
+      },
+      set(val) {
+        this.pageSettingData.globalPlate.componentData.text_op.fontSize = val;
+      },
+    },
+  },
   created() {},
   mounted() {},
   methods: {},

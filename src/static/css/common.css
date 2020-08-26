@@ -277,3 +277,6 @@ hr {
   padding: 0;
   border: 0;
 }
+.bs{
+  box-shadow: 0 0px 8px -2px rgba(63, 63, 68, 0.25);
+}

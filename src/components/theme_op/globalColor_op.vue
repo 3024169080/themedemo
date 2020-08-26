@@ -1,6 +1,16 @@
 <template>
   <!-- 颜色 -->
-  <div class="globalColor_op">globalColor_op</div>
+  <div class="globalColor_op">
+    <div class="options_block bs">
+      <p class="title">页面</p>
+      <div class="cont">
+        <div class="item flex">
+          <el-color-picker v-model="backgroundColor" show-alpha size="small"></el-color-picker>
+          <p class="name">背景</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -10,7 +20,18 @@ export default {
     return {};
   },
   components: {},
-  computed: {},
+  computed: {
+    // 背景色
+    backgroundColor: {
+      get() {
+        return this.$store.state.modelClass.currentPageInfo.pageSettingData
+          .globalColor.componentData.page_op.pageColor;
+      },
+      set(val) {
+        this.$store.state.modelClass.currentPageInfo.pageSettingData.globalColor.componentData.page_op.pageColor = val;
+      },
+    },
+  },
   created() {},
   mounted() {},
   methods: {},
@@ -19,5 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 .globalColor_op {
+  margin-top: 10px;
 }
 </style>

@@ -103,7 +103,6 @@ export default {
   created() {},
   mounted() {
     bus.$on("showComOptions", (type, val, index) => {
-      console.log(val, "---------------------91");
       this.showComOptions = val;
       this.operateChange(type, index);
     });
@@ -137,6 +136,7 @@ export default {
     // 点击展示配置
     showComponentsOptions(index) {
       bus.$emit("showComOptions", 1, true, index);
+      bus.$emit("contentPageScroll", "edit",index);
     },
     operateChange(type, index) {
       bus.$emit("operateChange", type, index); //展示配置

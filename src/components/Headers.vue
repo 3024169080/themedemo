@@ -51,6 +51,9 @@ export default {
     getComponentList() {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
+    pageSettingData() {
+      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    },
   },
   created() {},
   mounted() {},
@@ -67,7 +70,8 @@ export default {
       for (let i = 0; i < this.getComponentList.length; i++) {
         this.getComponentList[i]["queueNumber"] = i;
       }
-      console.log(this.getComponentList, "------------------------66");
+      console.log(this.pageSettingData,'--------------------------73');
+      console.log(this.getComponentList, "------------------------74");
     },
   },
 };

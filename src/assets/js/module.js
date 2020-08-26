@@ -19,18 +19,15 @@ export const pageInfo = {
       componentCode: "globalColor",
       componentType: 1,
       queueNumber: 0,
-      componentData: {
-        page_op: { pageColor: "#fff",borderColor:"#fff" },
-        button_op: { mainColor:"#fff" }
-      }
+      componentData: { page_op: { pageColor: "rgba(255,255,255,1)" } }
     },
-    globalPlate: {
-      id: "",
-      componentName: "板式",
-      componentCode: "globalPlate",
-      componentType: 1,
-      queueNumber: 0,
-      componentData: {}
-    }
+    // globalPlate: {
+    //   id: "",
+    //   componentName: "板式",
+    //   componentCode: "globalPlate",
+    //   componentType: 1,
+    //   queueNumber: 0,
+    //   componentData: { title_op: { fontSize: 18 }, text_op: { fontSize: 12 } }
+    // }
   }
 }; //页面组件 //1显示 //0 不可自由拖拽  1可移动
