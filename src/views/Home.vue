@@ -10,6 +10,7 @@
 <script type="text/ecmascript-6">
 import setUp from "@/components/themeOptions/setUp";
 import contentPage from "@/components/themeOptions/contentPage";
+import {getOssConfig} from "@/api/index"
 import { mapState } from "vuex";
 export default {
   name: "home",
@@ -30,7 +31,11 @@ export default {
       this.showContentPage = val <= 600 ? false : true;
     },
   },
-  created() {},
+  created() {
+    getOssConfig().then(res=>{
+      console.log(res,'-----------------------36')
+    })
+  },
   mounted() {
     let that = this;
     that.initView();

@@ -1,6 +1,6 @@
 <template>
   <!-- 模板设置 -->
-  <div class="globalOptions">
+  <div class="globalOptions bs">
     <div
       class="list"
       v-for="(item,key,index) in pageSettingData"

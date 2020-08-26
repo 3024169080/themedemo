@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- 已有组件列表 -->
-    <div class="cpList" v-if="tab==0">
+    <div class="cpList bs" v-if="tab==0">
       <draggable
         :value="getModelList"
         :group="{ pull:false,put:false}"
@@ -118,6 +118,9 @@ export default {
       let collection = this.getModelList[oldIndex];
       this.$store.commit("modelClass/removeModelListChild", oldIndex);
       this.getModelList.splice(newIndex, 0, collection);
+      setTimeout(() => {
+        bus.$emit("contentPageScroll", "edit",newIndex);
+      }, 16.7);
     },
     // 修改组件显示状态
     changeVisible(index) {

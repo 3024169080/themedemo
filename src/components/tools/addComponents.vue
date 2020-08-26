@@ -97,7 +97,6 @@ export default {
     },
     // 展示添加按钮
     showAddBtn(type, item) {
-      console.log(this.addComponentName, "---------------------89");
       if (this.addComponentName == item.componentName) {
         // 连续点击两次直接添加并初始化
         this.addItem(item);
