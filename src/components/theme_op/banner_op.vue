@@ -1,11 +1,11 @@
 <template>
-  <!-- 纯文本 -->
-  <div class="pureText_op">pureText_op</div>
+  <!-- 图片轮播 -->
+  <div class="banner_op">banner_op</div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
-  name: "pureText_op",
+  name: "banner_op",
   data() {
     return {};
   },
@@ -18,6 +18,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pureText_op {
+.banner_op {
 }
 </style>

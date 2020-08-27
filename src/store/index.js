@@ -9,6 +9,7 @@ Vue.use(Vuex);
 
 const state = {
   screenWidth: 0, //设备宽度
+  previewWidth: 0, //展示宽度
   globalDeviceType: 2, //设备模式  1手机2PC
   commonComponentModel //普通类组件
 };

@@ -5,7 +5,7 @@
       class="preview"
       :class="{'wrapperMobile':globalDeviceType==1}"
       ref="preview"
-      :style="[{'background':backgroundColor}]"
+      :style="[{'background':backgroundColor,'width':previewWidth+'px'}]"
     >
       <!-- <draggable
         :value="getModelList"
@@ -59,10 +59,10 @@ export default {
     draggable,
     // imageText,
     // imageRow,
-    // pureText,
+    // banner,
   },
   computed: {
-    ...mapState(["globalDeviceType", "screenWidth"]),
+    ...mapState(["globalDeviceType", "screenWidth", "previewWidth"]),
     getModelList() {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
@@ -98,7 +98,7 @@ export default {
           let { offsetTop } = this.$refs[
             this.getModelList[index].componentCode + index
           ][0].$el;
-          $(".preview").animate({ scrollTop: offsetTop-60 }, 500);
+          $(".preview").animate({ scrollTop: offsetTop - 60 }, 500);
         }
       }
     },
