@@ -23,6 +23,7 @@
         @click.stop="itemClick(element,index)"
         @mouseenter="mousemovesss(index)"
         :class="checkDisable(element)"
+        :style="[{'width':previewWidth+'px'}]"
       >
         <component
           :is="element.componentCode"
@@ -117,6 +118,9 @@ export default {
   transition: all 0.2s;
   height: calc(100vh - 50px - 20px);
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
 }
 .wrapperMobile {
   width: 375px;

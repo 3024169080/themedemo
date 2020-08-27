@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "//at.alicdn.com/t/font_2021742_iqxxzc73sk.css";
+@import "//at.alicdn.com/t/font_2021742_t310lgupaci.css";
 html,
 body,
 div,
@@ -150,6 +150,7 @@ a:focus {
 img {
   max-width: 100%;
   border: 0px;
+  display: block;
 }
 
 select,

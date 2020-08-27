@@ -194,34 +194,6 @@ export default {
     .list-complete-item {
       cursor: pointer;
     }
-    .addComponents {
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      border-top: 1px solid #ededed;
-      border-right: 3px solid transparent;
-      cursor: pointer;
-      &:hover {
-        transition: all 0.3s;
-        border-right-color: var(--main-color);
-      }
-      .namebox {
-        padding: 18px 15px;
-        padding-right: 44px;
-        flex: 1;
-        color: var(--main-color);
-        align-items: center;
-        i {
-          font-weight: bold;
-          font-size: 18px;
-        }
-        p {
-          font-size: 14px;
-          margin-left: 10px;
-          color: var(--main-color);
-        }
-      }
-    }
   }
 }
 .onlySetUp {

@@ -28,35 +28,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .model-box {
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  border-top: 1px solid #dfe3e8;
-  border-right: 3px solid transparent;
-  &:hover{
-    transition: all 0.3s;
-    border-right-color: var(--main-color);
-  }
   .namebox {
-    padding: 18px 15px;
-    padding-right: 44px;
-    flex: 1;
-    align-items: center;
-    i{
-      font-size: 18px;
-    }
-    p {
-      font-size: 14px;
-      margin-left: 10px;
-    }
   }
   .showIcon{
     color: var(--minor-color);
-  }
-  .icons {
-    width: 44px;
-    justify-content: center;
-    align-items: center;
   }
 }
 </style>

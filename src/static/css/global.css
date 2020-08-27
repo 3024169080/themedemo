@@ -48,3 +48,71 @@
   margin-left: 20px;
   font-size: 14px;
 }
+
+.model-box {
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #dfe3e8;
+  border-right: 3px solid transparent;
+}
+
+.model-box:hover {
+  transition: all 0.3s;
+  border-right-color: var(--main-color);
+}
+
+.model-box .namebox {
+  padding: 18px 15px;
+  padding-right: 44px;
+  flex: 1;
+  align-items: center;
+}
+
+.model-box .namebox i {
+  font-size: 18px;
+}
+
+.model-box .namebox p {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.model-box .icons {
+  width: 44px;
+  justify-content: center;
+  align-items: center;
+}
+
+.addComponents {
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #ededed;
+  border-right: 3px solid transparent;
+  cursor: pointer;
+}
+
+.addComponents:hover {
+  transition: all 0.3s;
+  border-right-color: var(--main-color);
+}
+
+.addComponents .namebox {
+  padding: 18px 15px;
+  padding-right: 44px;
+  flex: 1;
+  color: var(--main-color);
+  align-items: center;
+}
+
+.addComponents .namebox i {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.addComponents .namebox p {
+  font-size: 14px;
+  margin-left: 10px;
+  color: var(--main-color);
+}

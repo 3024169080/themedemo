@@ -1,5 +1,5 @@
 import Vue from "vue";
-import "element-ui/lib/theme-chalk/index.css";
+// import "element-ui/lib/theme-chalk/index.css";
 import {
   Radio,
   Breadcrumb,
@@ -29,8 +29,12 @@ import {
   Progress,
   Row,
   ColorPicker,
-  Slider
+  Slider,
+  Collapse,
+  CollapseItem
 } from "element-ui";
+
+import "@/assets/scss/element-variables.scss"; 
 
 Vue.use(Radio)
   .use(Breadcrumb)
@@ -58,6 +62,8 @@ Vue.use(Radio)
   .use(Progress)
   .use(Row)
   .use(Slider)
+  .use(Collapse)
+  .use(CollapseItem)
   .use(ColorPicker);
 
 Vue.prototype.$msgbox = MessageBox;

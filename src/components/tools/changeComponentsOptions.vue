@@ -130,6 +130,7 @@ export default {
   transition: all 0.3s;
   transform: translateX(100%);
   .top {
+    z-index: 9999;
     height: 50px;
     line-height: 50px;
     position: sticky;
