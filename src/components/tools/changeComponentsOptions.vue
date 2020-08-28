@@ -66,9 +66,11 @@ export default {
   },
   components: {
     // 组件设置
+    banner_op: () => import("@/components/theme_op/banner_op"),
+    articles_op: () => import("@/components/theme_op/articles_op"),
+
     imageText_op: () => import("@/components/theme_op/imageText_op"),
     imageRow_op: () => import("@/components/theme_op/imageRow_op"),
-    banner_op: () => import("@/components/theme_op/banner_op"),
     goodsList_op: () => import("@/components/theme_op/goodsList_op"),
     // 模板设置
     globalColor_op: () => import("@/components/theme_op/globalColor_op"),

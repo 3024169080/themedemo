@@ -36,7 +36,7 @@
         <div style="clear: both"></div>
       </draggable>
       <!-- 添加组件 -->
-      <div class="addComponents flex" @click="showComponentsList">
+      <div class="addComponents flex addPart" @click="showComponentsList">
         <div class="namebox flex">
           <i class="iconfont iconjiahao"></i>
           <p class="line-clamp1">添加部分</p>
@@ -193,6 +193,9 @@ export default {
     overflow-y: auto;
     .list-complete-item {
       cursor: pointer;
+    }
+    .addPart{
+      background: #fff;
     }
   }
 }

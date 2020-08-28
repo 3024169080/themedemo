@@ -106,3 +106,38 @@
     }
   }
 }
+.comBlock {
+  .comName {
+    padding: 14px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #637381;
+  }
+
+  .comMain {
+    background: #fff;
+
+    .setBlock {
+      padding: 20px;
+
+      .setTitle {
+        font-size: 14px;
+        color: var(--minor-color);
+      }
+
+      .setMain {
+        margin-top: 8px;
+
+        .flexItem {
+          display: flex;
+          align-items: center;
+
+          .itemRight {
+            margin-left: 10px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

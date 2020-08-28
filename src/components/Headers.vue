@@ -48,12 +48,6 @@ export default {
   components: {},
   computed: {
     ...mapState(["globalDeviceType"]),
-    getComponentList() {
-      return this.$store.state.modelClass.currentPageInfo.components;
-    },
-    globleThemeData() {
-      return this.$store.state.globleThemeData;
-    },
   },
   created() {},
   mounted() {},
@@ -63,16 +57,9 @@ export default {
     changeDevice(item) {
       this.changeDeviceType(item.type);
     },
-    // 保存
-    saveAll() {
-      console.log("----------保存");
-      //排序
-      for (let i = 0; i < this.getComponentList.length; i++) {
-        this.getComponentList[i]["queueNumber"] = i;
-      }
-      console.log(this.globleThemeData,'--------------------------73');
-      console.log(this.getComponentList, "------------------------74");
-    },
+    saveAll(){
+      this.$emit("saveAll");
+    }
   },
 };
 </script>

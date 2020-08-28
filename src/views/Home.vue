@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Headers @saveAll="saveAll"></Headers>
     <div class="content flex" ref="content">
       <setUp :onlySetUp="!showContentPage" :hideSetUp="globalDeviceType==3?true:false"></setUp>
       <contentPage :show="showContentPage||globalDeviceType==3"></contentPage>
@@ -9,6 +10,7 @@
 
 <script type="text/ecmascript-6">
 import bus from "@/assets/js/eventBus";
+import Headers from "@/components/Headers";
 import setUp from "@/components/themeOptions/setUp";
 import contentPage from "@/components/themeOptions/contentPage";
 import $ from "jquery";
@@ -16,6 +18,8 @@ import { getOssConfig } from "@/api/index";
 import globleThemeAPI from "@/api/theme/globleTheme";
 import { themePagesInfo } from "@/api/theme/themePages.js";
 import { singlePageInfo } from "@/api/theme/singlePage.js";
+import { updatePageInfo } from "@/api/theme/updatePage.js";
+import { publishOrUnPublishPage } from "@/api/theme/publishPage.js";
 import { mapState } from "vuex";
 export default {
   name: "home",
@@ -37,7 +41,7 @@ export default {
         pageData: "string",
         pageSettingData: "",
         pageDescription: "string",
-        pageType: 0,
+        pageType: 2,
         publishFlag: 0,
         id: 0,
         shopId: -1,
@@ -48,9 +52,13 @@ export default {
   components: {
     setUp,
     contentPage,
+    Headers,
   },
   computed: {
     ...mapState(["screenWidth", "previewWidth", "globalDeviceType"]),
+    getComponentList() {
+      return this.$store.state.modelClass.currentPageInfo.components;
+    },
   },
   watch: {
     screenWidth(val) {
@@ -97,7 +105,7 @@ export default {
     },
     responseGetThemeInfo(response) {
       if (response.data.code == 200) {
-        if (response.data.data.themeData != ""&&response.data.data.versionNumber!='0.1') {
+        if (response.data.data.themeData != "") {
           this.$store.state.globleThemeData = {
             ...this.$store.state.globleThemeData,
             ...JSON.parse(response.data.data.themeData),
@@ -124,23 +132,13 @@ export default {
         if (state == "updata") {
           this.getSinglePageInfo(this.pageList[this.dropdownIndex]["id"]);
         } else {
-          if (Array.isArray(this.pageList) && this.pageList.length > 0) {
-            let pageid = this.$route.query.pageid;
-            console.log(pageid, "------------------------130");
-            if (pageid == undefined) {
-              this.dropdownIndex = this.pageList.findIndex((item) =>
-                item.pageCode == "1" && item.publishFlag === undefined
-                  ? true
-                  : item.publishFlag == "1"
-              );
-              this.getSinglePageInfo(this.pageList[this.dropdownIndex]["id"]);
-            } else {
-              this.dropdownIndex = this.pageList.findIndex(
-                (item) => item.id == pageid
-              );
-              this.getSinglePageInfo(pageid);
-            }
-          }
+          // if (Array.isArray(this.pageList) && this.pageList.length > 0) {
+          // this.dropdownIndex = this.pageList.findIndex(
+          //   (item) => item.id == pageid
+          // );
+          // }
+          this.dropdownIndex = 0;
+          this.getSinglePageInfo(this.pageList[this.dropdownIndex]["id"]);
         }
       }
     },
@@ -169,9 +167,8 @@ export default {
           components.length > 0 && components.charAt(0) == "["
             ? JSON.parse(response.data.data.pageData)
             : [];
-        console.log(response.data.data.versionNumber=='0.1','-----------------------177')
         // 当前页面配置数据（组件，页面设置）
-        if(response.data.data.versionNumber!='0.1'){
+        if (response.data.data.pageType == 2) {
           this.$store.commit("modelClass/setCurrentPageInfo", {
             components,
             pageSettingData,
@@ -184,6 +181,99 @@ export default {
         //改变保存发布页面状态
       }
       this.saveFlag = false;
+    },
+
+    // 保存
+    saveAll() {
+      console.log("----------保存");
+      if (this.saveFlag) return;
+      this.saveFlag = true;
+      console.log(
+        this.pageList,
+        this.dropdownIndex,
+        "-----------------------229"
+      );
+      if (this.pageList.length <= 0) {
+        this.$message({
+          type: "warning",
+          message: "没有页面可以保存!",
+        });
+        return;
+      }
+      this.updateValue.id = this.pageList[this.dropdownIndex]["id"];
+      this.updateValue.shopId = this.shopid;
+      this.updateValue.pageCode = this.pageList[this.dropdownIndex].pageCode;
+      //排序
+      for (let i = 0; i < this.getComponentList.length; i++) {
+        this.getComponentList[i]["queueNumber"] = i;
+      }
+      //客户保存
+      this.updateValue.pageData = JSON.stringify(this.getComponentList);
+      this.updateValue.pageSettingData = JSON.stringify(
+        this.getPageSettingData
+      );
+      console.log(this.updateValue, "----------------------203");
+      Promise.all([
+        updatePageInfo(this.updateValue),
+        globleThemeAPI.updateShopCmsTheme({
+          id: this.$route.query.shopThemeId,
+          themeData: this.$store.state.globleThemeData,
+        }),
+      ])
+        .then((response) => {
+          if (
+            response.every((item) => {
+              return item.data.code == 200;
+            })
+          ) {
+            this.$message({
+              message: "保存成功",
+              type: "success",
+            });
+            if (true) {
+              this.publishPage();
+            } else {
+              this.saveFlag = false;
+            }
+          } else {
+            this.saveFlag = false;
+          }
+        })
+        .catch((err) => {
+          this.saveFlag = false;
+        });
+    },
+    // 发布页面
+    publishPage() {
+      if (this.pageList.length <= 0) {
+        this.$message({
+          type: "warning",
+          message: "没有页面可以发布!",
+        });
+        return;
+      }
+      let item = this.pageList[this.dropdownIndex];
+      item.publishFlag = 1;
+      item.coverPageDataFlag = false;
+      publishOrUnPublishPage(item)
+        .then((res) => {
+          if (res.data.data == "true") {
+            // this.$message({
+            //   type: "success",
+            //   message: "发布成功!",
+            // });
+            //初始化----------页面
+            this.getThemePagesInfo("updata");
+            this.$store.commit("modelClass/initPageInfo");
+          }
+        })
+        .catch((err) => {
+          this.saveFlag = false;
+          this.$message({
+            type: "error",
+            message: "发布失败!" + err,
+          });
+        });
     },
   },
 };
