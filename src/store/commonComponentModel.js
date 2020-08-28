@@ -19,17 +19,7 @@ export default {
         intervalTime: 3,
         imgList: [
           {
-            imgUrl:
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598092514179&di=0e18ba763cacbc72ec4f92fb14a8db34&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-26%2F59f182e5c1157.jpg",
-            name: "图片幻灯片",
-            links: {
-              type: 0,
-              links: ""
-            }
-          },
-          {
-            imgUrl:
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598520775223&di=4c3ef550e8cd483bd22cdbabb4e5bc08&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-10%2F5a55b29e06143.jpg",
+            imgUrl: "",
             name: "图片幻灯片",
             links: {
               type: 0,

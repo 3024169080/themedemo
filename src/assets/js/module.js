@@ -13,14 +13,14 @@ export const link = {
 export const pageInfo = {
   components: [],
   pageSettingData: {
-    globalColor: {
-      id: "",
-      componentName: "颜色",
-      componentCode: "globalColor",
-      componentType: 1,
-      queueNumber: 0,
-      componentData: { page_op: { pageColor: "rgba(255,255,255,1)" } }
-    },
+    // globalColor: {
+    //   id: "",
+    //   componentName: "颜色",
+    //   componentCode: "globalColor",
+    //   componentType: 1,
+    //   queueNumber: 0,
+    //   componentData: { page_op: { pageColor: "rgba(255,255,255,1)" } }
+    // },
     // globalPlate: {
     //   id: "",
     //   componentName: "板式",

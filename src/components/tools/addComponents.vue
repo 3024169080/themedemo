@@ -108,20 +108,12 @@ export default {
           "modelClass/removeModelListChild",
           this.$store.state.modelClass.currentPageInfo.components.length - 1
         );
-        return;
       }
-      if (
-        this.addComponentName != item.componentName &&
-        !this.addComponentName == ""
-      ) {
-        this.$store.dispatch("modelClass/addModellistPushChild", item);
-      }
+      this.$store.dispatch("modelClass/addModellistPushChild", item);
       this.addComponentName = item.componentName;
     },
     // 确认添加
     addItem(item) {
-      console.log("------确认添加");
-      this.$store.dispatch("modelClass/addModellistPushChild", item);
       bus.$emit(
         "showComOptions",
         1,

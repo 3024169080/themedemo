@@ -1,14 +1,6 @@
-/*
- * @Author: your name
- * @Date: 2020-08-10 13:51:24
- * @LastEditTime: 2020-08-11 15:42:30
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \ghsc-front-pc\utils\request.js
- */
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
-
+import { getUrlKey } from "@/utils/tools.js";
 const service = axios.create({
   baseURL: process.env.VUE_APP_domain,
   timeout: 500000
@@ -16,8 +8,8 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    console.log(process.env.VUE_APP_domain, "---------------------19");
     config.headers['Mayi-Token'] = localStorage.getItem('Mayi-Token') || ''
+    config.headers["Shop-Mixid"] = getUrlKey("shopMixId") || "";
     return config
   },
   error => {

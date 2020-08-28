@@ -68,7 +68,7 @@ export default {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
     backgroundColor() {
-      return this.$store.state.modelClass.currentPageInfo.pageSettingData
+      return this.$store.state.globleThemeData
         .globalColor.componentData.page_op.pageColor;
     },
   },

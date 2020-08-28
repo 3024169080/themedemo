@@ -3,7 +3,7 @@
   <div class="globalOptions bs">
     <div
       class="list"
-      v-for="(item,key,index) in pageSettingData"
+      v-for="(item,key,index) in globleThemeData"
       :key="index"
       @click="showComponentsOptions(item,key,index)"
     >
@@ -26,8 +26,8 @@ export default {
   },
   components: {},
   computed: {
-    pageSettingData() {
-      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    globleThemeData() {
+      return this.$store.state.globleThemeData;
     },
   },
   created() {},

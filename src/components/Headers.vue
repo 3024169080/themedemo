@@ -51,8 +51,8 @@ export default {
     getComponentList() {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
-    pageSettingData() {
-      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    globleThemeData() {
+      return this.$store.state.globleThemeData;
     },
   },
   created() {},
@@ -70,7 +70,7 @@ export default {
       for (let i = 0; i < this.getComponentList.length; i++) {
         this.getComponentList[i]["queueNumber"] = i;
       }
-      console.log(this.pageSettingData,'--------------------------73');
+      console.log(this.globleThemeData,'--------------------------73');
       console.log(this.getComponentList, "------------------------74");
     },
   },

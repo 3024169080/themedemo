@@ -24,11 +24,11 @@ export default {
     // 背景色
     backgroundColor: {
       get() {
-        return this.$store.state.modelClass.currentPageInfo.pageSettingData
+        return this.$store.state.globleThemeData
           .globalColor.componentData.page_op.pageColor;
       },
       set(val) {
-        this.$store.state.modelClass.currentPageInfo.pageSettingData.globalColor.componentData.page_op.pageColor = val;
+        this.$store.state.globleThemeData.globalColor.componentData.page_op.pageColor = val;
       },
     },
   },

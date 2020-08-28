@@ -36,25 +36,25 @@ export default {
   },
   components: {},
   computed: {
-    pageSettingData() {
-      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    globleThemeData() {
+      return this.$store.state.globleThemeData;
     },
     // 标题文字尺寸
     titleSize: {
       get() {
-        return this.pageSettingData.globalPlate.componentData.title_op.fontSize;
+        return this.globleThemeData.globalPlate.componentData.title_op.fontSize;
       },
       set(val) {
-        this.pageSettingData.globalPlate.componentData.title_op.fontSize = val;
+        this.globleThemeData.globalPlate.componentData.title_op.fontSize = val;
       },
     },
     // 正文文字尺寸
     textSize: {
       get() {
-        return this.pageSettingData.globalPlate.componentData.text_op.fontSize;
+        return this.globleThemeData.globalPlate.componentData.text_op.fontSize;
       },
       set(val) {
-        this.pageSettingData.globalPlate.componentData.text_op.fontSize = val;
+        this.globleThemeData.globalPlate.componentData.text_op.fontSize = val;
       },
     },
   },

@@ -78,8 +78,8 @@ export default {
     getModelList() {
       return this.$store.state.modelClass.currentPageInfo.components;
     },
-    pageSettingData() {
-      return this.$store.state.modelClass.currentPageInfo.pageSettingData;
+    globleThemeData() {
+      return this.$store.state.globleThemeData;
     },
   },
   created() {},
@@ -101,7 +101,7 @@ export default {
         }
       } else if (type == 2) {
         this.shu = data;
-        this.comData = this.pageSettingData[this.shu];
+        this.comData = this.globleThemeData[this.shu];
       }
       this.title = this.comData.componentName;
       //更新组件视图

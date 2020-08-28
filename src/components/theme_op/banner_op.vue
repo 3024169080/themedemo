@@ -81,7 +81,7 @@
           <div style="clear: both"></div>
         </draggable>
         <!-- 添加 -->
-        <div class="addComponents flex" @click="addImg">
+        <div class="addComponents flex addImg" @click="addImg">
           <div class="namebox flex">
             <i class="iconfont iconjiahao"></i>
             <p class="line-clamp1">添加图片</p>
@@ -173,8 +173,7 @@ export default {
     },
     addImg() {
       this.imgList.push({
-        imgUrl:
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598520775223&di=4c3ef550e8cd483bd22cdbabb4e5bc08&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-10%2F5a55b29e06143.jpg",
+        imgUrl: "",
         name: "图片幻灯片",
         links: {
           type: 0,
@@ -202,6 +201,9 @@ export default {
     &:hover {
       color: var(--main-color);
     }
+  }
+  .addImg{
+    margin-left: 6px;
   }
 }
 
@@ -243,6 +245,9 @@ export default {
     .namebox {
       justify-content: center;
       align-items: center;
+      i{
+        margin-left: 6px;
+      }
       .img {
         width: 30px;
         height: 30px;

@@ -1,9 +1,14 @@
 <template>
   <!-- 纯文本组件 -->
   <div class="banner">
-    <van-swipe ref="Swiper" class="my-swipe" :autoplay="intervalTime*1000" indicator-color="var(--main-color)">
+    <van-swipe
+      ref="Swiper"
+      class="my-swipe"
+      :autoplay="intervalTime*1000"
+      indicator-color="var(--main-color)"
+    >
       <van-swipe-item v-for="(item,index) in imgList" :key="index">
-        <div class="img" :style="{'height':pictureHeight/12+'em'}">
+        <div class="img" :style="{'height':pictureHeight/12+'em'}" @click="toPage(item)">
           <img draggable="false" :src="item.imgUrl | DFSImg" alt />
         </div>
       </van-swipe-item>
@@ -56,6 +61,11 @@ export default {
           this.$refs.Swiper.resize();
         }, 400);
       });
+    },
+    toPage(item) {
+      if (item.links.links) {
+        window.open(item.links.links);
+      }
     },
   },
 };
