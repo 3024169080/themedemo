@@ -87,7 +87,6 @@
 .addComponents {
   justify-content: space-between;
   align-items: center;
-  background: #fff;
   border-top: 1px solid #ededed;
   border-right: 3px solid transparent;
   cursor: pointer;
@@ -125,11 +124,12 @@
 }
 
 .comBlock .comMain {
+  padding: 10px 0;
   background: #fff;
 }
 
 .comBlock .comMain .setBlock {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .comBlock .comMain .setBlock .setTitle {

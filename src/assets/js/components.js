@@ -6,9 +6,19 @@ import goodsList from "@/components/theme/goodsList/index.js";
 const components = [imageRow, imageText, banner, goodsList, articles];
 
 // 注册组件
-const install = (Vue, opt) => {
-  // console.log(opt,'----------------opt');
-  Vue.prototype.$opt = opt;
+const install = (Vue, opts) => {
+  Vue.mixin({
+    data() {
+      return { opt: returnOpt(this.$options.name) };
+    }
+  });
+
+  function returnOpt(name) {
+    return opts.list.filter(item => {
+      return item.componentCode == name;
+    })[0];
+  }
+
   components.map(component => {
     Vue.component(component.name, component);
   });

@@ -16,7 +16,9 @@ import "@vant/touch-emulator";
 Vue.use(Vant);
 
 import componentsList from "@/assets/js/components";
-Vue.use(componentsList);
+import componentData from "@/assets/js/componentData";
+let opts = componentData;
+Vue.use(componentsList, opts);
 
 import { DFSImg } from "@/filters/index";
 //定义一个图片过滤器(双向绑定)

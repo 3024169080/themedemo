@@ -77,7 +77,6 @@
 .addComponents {
   justify-content: space-between;
   align-items: center;
-  background: #fff;
   border-top: 1px solid #ededed;
   border-right: 3px solid transparent;
   cursor: pointer;
@@ -115,10 +114,11 @@
   }
 
   .comMain {
+    padding: 10px 0;
     background: #fff;
 
     .setBlock {
-      padding: 20px;
+      padding: 10px 20px;
 
       .setTitle {
         font-size: 14px;

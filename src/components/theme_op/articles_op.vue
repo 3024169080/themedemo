@@ -5,6 +5,9 @@
       <div class="comName">设置</div>
       <div class="comMain bs">
         <div class="setBlock">
+          <el-checkbox v-model="wideScreenShow">宽屏显示</el-checkbox>
+        </div>
+        <div class="setBlock">
           <div class="setTitle">标题</div>
           <div class="setMain">
             <el-input size="small" v-model="title" placeholder="请输入标题"></el-input>
@@ -25,7 +28,20 @@
             </div>
           </div>
           <div class="setMain">
-            <el-input type="textarea" size="mini" :rows="2" placeholder="请输入内容" v-model="content"></el-input>
+            <el-input type="textarea" size="mini" :rows="8" placeholder="请输入内容" v-model="content"></el-input>
+          </div>
+        </div>
+        <div class="setBlock">
+          <div class="setTitle">大小</div>
+          <div class="setMain">
+            <el-select v-model="textSize" placeholder="请选择" size="small">
+              <el-option
+                v-for="item in textSizeList"
+                :key="item.value"
+                :label="item.name"
+                :value="item.value"
+              ></el-option>
+            </el-select>
           </div>
         </div>
       </div>
@@ -43,10 +59,33 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      textSizeList:[
+        {
+          name:'小',
+          value:1.2,
+        },
+        {
+          name:'中',
+          value:1.4,
+        },
+        {
+          name:'大',
+          value:1.6,
+        }
+      ]
+    };
   },
   components: {},
   computed: {
+    wideScreenShow: {
+      get() {
+        return this.datas.componentData.wideScreenShow;
+      },
+      set(newVal) {
+        this.datas.componentData.wideScreenShow = newVal;
+      },
+    },
     title: {
       get() {
         return this.datas.componentData.title;
@@ -77,6 +116,14 @@ export default {
       },
       set(newVal) {
         this.datas.componentData.useItalics = newVal;
+      },
+    },
+    textSize: {
+      get() {
+        return this.datas.componentData.textSize;
+      },
+      set(newVal) {
+        this.datas.componentData.textSize = newVal;
       },
     },
   },

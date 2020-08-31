@@ -59,7 +59,7 @@ export default {
       this.$nextTick(() => {
         setTimeout(() => {
           this.$refs.Swiper.resize();
-        }, 400);
+        }, 500);
       });
     },
     toPage(item) {

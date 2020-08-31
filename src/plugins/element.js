@@ -31,7 +31,8 @@ import {
   ColorPicker,
   Slider,
   Collapse,
-  CollapseItem
+  CollapseItem,
+  RadioGroup
 } from "element-ui";
 
 import "@/assets/scss/element-variables.scss"; 
@@ -64,6 +65,7 @@ Vue.use(Radio)
   .use(Slider)
   .use(Collapse)
   .use(CollapseItem)
+  .use(RadioGroup)
   .use(ColorPicker);
 
 Vue.prototype.$msgbox = MessageBox;

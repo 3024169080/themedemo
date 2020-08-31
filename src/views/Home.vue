@@ -70,6 +70,12 @@ export default {
     },
   },
   created() {
+    var confirm_msg =
+      "-------------\n如果选择离开，您的数据将得不到保存，您确定离开吗？\n-------------";
+    window.onbeforeunload = function (event) {
+      event = event || window.event;
+      event.returnValue = confirm_msg;
+    };
     window.localStorage.setItem("Mayi-Token", this.$route.query.token);
     this.$store.commit("setAccount", { themeId: this.$route.query.themeId }); //是否为运维状态
     this.$store.state.token = window.localStorage.getItem("Mayi-Token"); //token
