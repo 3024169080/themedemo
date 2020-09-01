@@ -68,6 +68,7 @@ export default {
     // 组件设置
     banner_op: () => import("@/components/theme_op/banner_op"),
     articles_op: () => import("@/components/theme_op/articles_op"),
+    cutaway_op: () => import("@/components/theme_op/cutaway_op"),
 
     imageText_op: () => import("@/components/theme_op/imageText_op"),
     imageRow_op: () => import("@/components/theme_op/imageRow_op"),

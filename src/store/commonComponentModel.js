@@ -47,6 +47,31 @@ export default {
         useItalics: false, //斜体
         textSize: 1.2 //字体大小
       }
+    },
+    {
+      id: "",
+      componentName: "切图",
+      componentCode: "cutaway",
+      componentType: 1,
+      queueNumber: 0,
+      componentInfo: {
+        visible: 1, //1显示
+        drawable: 0 //0 不可自由拖拽  1可移动
+      },
+      componentData: {
+        imgList: [
+          [
+            {
+              imgUrl: "",
+              name: "图片",
+              links: {
+                type: 0,
+                links: ""
+              }
+            }
+          ]
+        ]
+      }
     }
     // {
     //   id: "",

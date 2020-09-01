@@ -140,6 +140,7 @@ export default {
     showComponentsOptions(index) {
       bus.$emit("showComOptions", 1, true, index);
       bus.$emit("contentPageScroll", "edit",index);
+      this.$store.commit("SET_COMPONENTS_INDEX",index);
     },
     operateChange(type, index) {
       bus.$emit("operateChange", type, index); //展示配置

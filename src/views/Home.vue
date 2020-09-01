@@ -5,6 +5,8 @@
       <setUp :onlySetUp="!showContentPage" :hideSetUp="globalDeviceType==3?true:false"></setUp>
       <contentPage :show="showContentPage||globalDeviceType==3"></contentPage>
     </div>
+    <!-- 切图模块 -->
+    <slicing-layout ref="slicing_layout" @getImg="getImg" />
   </div>
 </template>
 
@@ -53,6 +55,7 @@ export default {
     setUp,
     contentPage,
     Headers,
+    "slicing-layout": () => import("@/components/slicing/SlicingLayout.vue"),
   },
   computed: {
     ...mapState(["screenWidth", "previewWidth", "globalDeviceType"]),
@@ -87,6 +90,9 @@ export default {
     that.initView();
     window.addEventListener("resize", function () {
       that.initView();
+    });
+    bus.$on("openSlicingLayout", () => {
+      this.$refs["slicing_layout"].open();
     });
   },
   methods: {
@@ -280,6 +286,26 @@ export default {
             message: "发布失败!" + err,
           });
         });
+    },
+    // 获取切图
+    getImg(res) {
+      if (res.length == 0) {
+        return;
+      }
+      let list = res.map((item) => {
+        return item.map((item1) => {
+          return {
+            imgUrl: item1,
+            name: "图片",
+            links: {
+              type: 0,
+              links: "",
+            },
+          };
+        });
+      });
+      this.getComponentList[this.$store.state.componentsIndex].componentData.imgList.push(...list);
+      console.log(res, list, "--------------------292");
     },
   },
 };

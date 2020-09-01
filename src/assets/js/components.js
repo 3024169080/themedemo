@@ -3,7 +3,8 @@ import imageText from "@/components/theme/imageText/index.js";
 import banner from "@/components/theme/banner/index.js";
 import articles from "@/components/theme/articles/index.js";
 import goodsList from "@/components/theme/goodsList/index.js";
-const components = [imageRow, imageText, banner, goodsList, articles];
+import cutaway from "@/components/theme/cutaway/index.js";
+const components = [imageRow, imageText, banner, goodsList, articles, cutaway];
 
 // 注册组件
 const install = (Vue, opts) => {

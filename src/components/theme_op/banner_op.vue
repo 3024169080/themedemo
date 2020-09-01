@@ -67,6 +67,7 @@
                         size="small"
                         v-model="item.links.links"
                         placeholder="请输入连接(https://开头)"
+                        @blur="checkLinks(item.links.links)"
                       ></el-input>
                     </div>
                   </div>
@@ -181,6 +182,11 @@ export default {
         },
       });
     },
+    checkLinks(links) {
+      if (links.indexOf("http://") < 0 && links.indexOf("https://") < 0) {
+        this.$message.info("请输入带http://或https://的链接");
+      }
+    },
   },
 };
 </script>
@@ -202,7 +208,7 @@ export default {
       color: var(--main-color);
     }
   }
-  .addImg{
+  .addImg {
     margin-left: 6px;
   }
 }
@@ -216,7 +222,7 @@ export default {
     .namebox {
       justify-content: center;
       align-items: center;
-      i{
+      i {
         margin-left: 6px;
       }
       .img {

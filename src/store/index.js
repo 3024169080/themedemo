@@ -12,6 +12,7 @@ const state = {
   previewWidth: 0, //展示宽度
   globalDeviceType: 2, //设备模式  1手机2PC
   commonComponentModel, //普通类组件
+  componentsIndex:0,//当前选中的组件
   //账号登录token
   token: "",
   // 账户信息

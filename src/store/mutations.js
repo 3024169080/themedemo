@@ -20,6 +20,9 @@ const mutations = {
   //页面信息
   SET_PAGELIST(state, val) {
     state.pageList = val;
+  },
+  SET_COMPONENTS_INDEX(state, val) {
+    state.componentsIndex=val;
   }
 };
 export default mutations;

@@ -283,7 +283,7 @@ export default {
       overflow: hidden;
       margin-right: 2px;
       margin-bottom: 2px;
-      border: 1px solid var(--minor-color);
+      border: 1px solid #efefef;
       img {
         width: 100%;
         height: 100%;
