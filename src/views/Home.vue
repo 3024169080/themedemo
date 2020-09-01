@@ -310,6 +310,9 @@ export default {
       this.getComponentList[
         this.$store.state.componentsIndex
       ].componentData.imgList.push(...list);
+      console.log(this.getComponentList[
+        this.$store.state.componentsIndex
+      ].componentData,'------------------------------315')
       console.log(res, list, "--------------------292");
     },
   },

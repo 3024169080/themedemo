@@ -122,6 +122,7 @@ export default {
       );
       this.init();
       this.closeDia();
+      this.$store.commit("SET_COMPONENTS_INDEX",this.$store.state.modelClass.currentPageInfo.components.length-1);
       setTimeout(() => {
         bus.$emit("contentPageScroll", "add");
       }, 16.7);

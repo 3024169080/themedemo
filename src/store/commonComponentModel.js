@@ -60,16 +60,16 @@ export default {
       },
       componentData: {
         imgList: [
-          [
-            {
-              imgUrl: "",
-              name: "图片",
-              links: {
-                type: 0,
-                links: ""
-              }
-            }
-          ]
+          // [
+          //   {
+          //     imgUrl: "",
+          //     name: "图片",
+          //     links: {
+          //       type: 0,
+          //       links: ""
+          //     }
+          //   }
+          // ]
         ]
       }
     }
