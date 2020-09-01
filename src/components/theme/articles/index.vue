@@ -4,7 +4,7 @@
     <h3 class="title">{{title}}</h3>
     <div
       class="content"
-      :class="{'wideScreen':wideScreenShow}"
+      :class="{'wideScreen':!wideScreenShow}"
       :style="[{'font-weight':useBold?'bold':''},{'font-style':useItalics?'oblique ':''},{'font-size':textSize+'em'},{'line-height':'1.3em'}]"
       v-html="content"
     ></div>
