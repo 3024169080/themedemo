@@ -61,12 +61,12 @@
                     </div>
                   </div>
                   <div class="setBlock">
-                    <div class="setTitle">选择连接</div>
+                    <div class="setTitle">选择链接</div>
                     <div class="setMain">
                       <el-input
                         size="small"
                         v-model="item.links.links"
-                        placeholder="请输入连接(https://开头)"
+                        placeholder="请输入链接(https://开头)"
                         @blur="checkLinks(item.links.links)"
                       ></el-input>
                     </div>

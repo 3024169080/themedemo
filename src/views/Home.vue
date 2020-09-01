@@ -39,7 +39,7 @@ export default {
       updateValue: {
         defaultFlag: 0,
         languageCode: "string",
-        pageCode: 1,
+        pageCode: 9,
         pageData: "string",
         pageSettingData: "",
         pageDescription: "string",
@@ -144,12 +144,12 @@ export default {
         if (state == "updata") {
           this.getSinglePageInfo(this.pageList[this.dropdownIndex]["id"]);
         } else {
-          // if (Array.isArray(this.pageList) && this.pageList.length > 0) {
-          // this.dropdownIndex = this.pageList.findIndex(
-          //   (item) => item.id == pageid
-          // );
-          // }
-          this.dropdownIndex = 0;
+          if (Array.isArray(this.pageList) && this.pageList.length > 0) {
+            this.dropdownIndex = this.pageList.findIndex(
+              (item) => item.pageCode == 9
+            );
+          }
+          console.log(this.dropdownIndex,'--------------------152');
           this.getSinglePageInfo(this.pageList[this.dropdownIndex]["id"]);
         }
       }
@@ -212,9 +212,12 @@ export default {
         });
         return;
       }
-      this.updateValue.id = this.pageList[this.dropdownIndex]["id"];
+      if(this.dropdownIndex>=0){
+        this.updateValue.id = this.pageList[this.dropdownIndex]["id"];
+      }else{
+        delete this.updateValue.id;
+      }
       this.updateValue.shopId = this.shopid;
-      this.updateValue.pageCode = this.pageList[this.dropdownIndex].pageCode;
       //排序
       for (let i = 0; i < this.getComponentList.length; i++) {
         this.getComponentList[i]["queueNumber"] = i;
@@ -304,7 +307,9 @@ export default {
           };
         });
       });
-      this.getComponentList[this.$store.state.componentsIndex].componentData.imgList.push(...list);
+      this.getComponentList[
+        this.$store.state.componentsIndex
+      ].componentData.imgList.push(...list);
       console.log(res, list, "--------------------292");
     },
   },
