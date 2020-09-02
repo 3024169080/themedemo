@@ -19,6 +19,8 @@
 
 <script type="text/ecmascript-6">
 import bus from "@/assets/js/eventBus";
+
+const golbalOptions = ["globalColor"];
 export default {
   name: "globalOptions",
   data() {
@@ -27,7 +29,13 @@ export default {
   components: {},
   computed: {
     globleThemeData() {
-      return this.$store.state.globleThemeData;
+      let globleThemeData = {};
+      Object.keys(this.$store.state.globleThemeData).forEach((key) => {
+        if (golbalOptions.includes(key)) {
+          globleThemeData[key] = this.$store.state.globleThemeData[key];
+        }
+      });
+      return globleThemeData;
     },
   },
   created() {},

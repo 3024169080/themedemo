@@ -118,9 +118,10 @@ export default {
     responseGetThemeInfo(response) {
       if (response.data.code == 200) {
         if (response.data.data.themeData != "") {
+          let themeData=JSON.parse(response.data.data.themeData);
           this.$store.state.globleThemeData = {
             ...this.$store.state.globleThemeData,
-            ...JSON.parse(response.data.data.themeData),
+            ...themeData,
           };
         }
       }

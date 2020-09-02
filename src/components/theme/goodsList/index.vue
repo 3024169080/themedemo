@@ -144,8 +144,8 @@ export default {
         this.opt.queryProductInfo(query).then((res) => {
           this.toInit = true;
           //  || (!this.render && res.data.code == 200)
-          if (res.data.code == 200) {
-            this.goodsList = res.data.data.list;
+          if (res.code == 200 || (!this.render && res.data.code == 200)) {
+            this.goodsList = this.render ? res.data.list : res.data.data.list;
             this.goodsList.forEach((item) => {
               item.coverImage = this.opt.DFSImg(item.coverImage);
               item.productImgUrl = this.opt.DFSImg(item.productImgUrl);
@@ -183,9 +183,8 @@ export default {
         console.log(query, "----176");
         this.opt.queryProductInfo(query).then((res) => {
           this.toInit = true;
-          //  || (!this.render && res.data.code == 200)
-          if (res.data.code == 200) {
-            this.goodsList = res.data.data.list;
+          if (res.code == 200 || (!this.render && res.data.code == 200)) {
+            this.goodsList = this.render ? res.data.list : res.data.data.list;
             this.goodsList.forEach((item) => {
               item.coverImage = this.opt.DFSImg(item.coverImage);
               item.productImgUrl = this.opt.DFSImg(item.productImgUrl);
