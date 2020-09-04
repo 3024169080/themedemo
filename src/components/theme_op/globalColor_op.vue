@@ -5,7 +5,12 @@
       <p class="title">页面</p>
       <div class="cont">
         <div class="item flex">
-          <el-color-picker v-model="backgroundColor" show-alpha size="small"></el-color-picker>
+          <el-color-picker
+            v-model="backgroundColor"
+            show-alpha
+            :predefine="predefineColors"
+            size="small"
+          ></el-color-picker>
           <p class="name">背景</p>
         </div>
       </div>
@@ -14,18 +19,21 @@
 </template>
 
 <script type="text/ecmascript-6">
+import { predefineColors } from "@/assets/js/baseData";
 export default {
   name: "globalColor_op",
   data() {
-    return {};
+    return {
+      predefineColors,
+    };
   },
   components: {},
   computed: {
     // 背景色
     backgroundColor: {
       get() {
-        return this.$store.state.globleThemeData
-          .globalColor.componentData.page_op.pageColor;
+        return this.$store.state.globleThemeData.globalColor.componentData
+          .page_op.pageColor;
       },
       set(val) {
         this.$store.state.globleThemeData.globalColor.componentData.page_op.pageColor = val;
